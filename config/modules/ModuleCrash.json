@@ -22,6 +22,11 @@
           "duplicates": "MC-297"
         },
         {
+          "head": "No OpenGL context found in the current thread",
+          "resolveAs": "Duplicate",
+          "duplicates": "MC-297"
+        },
+        {
           "head": "Could not create context",
           "resolveAs": "Duplicate",
           "duplicates": "MC-297"
