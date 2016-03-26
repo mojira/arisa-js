@@ -1,0 +1,18 @@
+{
+  "module": {
+    "name": "Future Version Check",
+    "description": "Check for Future Versions and replace them with current releases",
+    "version": "0.1",
+    "priority": 10
+  },
+  "config": {
+
+    "run": {
+      "new": true,
+      "update": true
+    },
+    "messages": {
+      "updateReason": "Please *do not* mark _unreleased versions_ as affected.\r\nYou don't have access to them yet."
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "module": {
+    "name": "Reopen Awaiting",
+    "description": "Reopens issues marked as 'Awaiting Response'",
+    "version": "0.1",
+    "priority": 1
+  },
+  "config": {
+
+    "run": {
+      "new": false,
+      "update": true
+    },
+
+    "messages": {
+      "closeReason": ""
+    }
+  }
+}

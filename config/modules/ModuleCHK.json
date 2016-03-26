@@ -1,0 +1,19 @@
+{
+  "module": {
+    "name": "Apply CHK",
+    "description": "Marks all not-unconfirmed issues as CHK'ed by a moderator",
+    "version": "0.1",
+    "priority": 1
+  },
+  "config": {
+
+    "run": {
+      "new": true,
+      "update": true
+    },
+
+    "messages": {
+      "closeReason": ""
+    }
+  }
+}

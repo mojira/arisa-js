@@ -1,0 +1,19 @@
+{
+  "module": {
+    "name": "Empty Check",
+    "description": "Check for empty or default issue descriptions",
+    "version": "0.1",
+    "priority": 5
+  },
+  "config": {
+
+    "run": {
+      "new": true,
+      "update": false
+    },
+
+    "messages": {
+      "closeReason": "Incomplete without a crash report ({{[minecraft|http://hopper.minecraft.net/help/finding-minecraft-data-folder]/crash-reports/crash-<DATE>-client.txt}}). Please attach it so that we can diagnose your issue.\r\nFor technical support please use the [Mojang Support Center|http://help.mojang.com/customer/portal/articles/364794-where-can-i-find-more-help-and-technical-support-]."
+    }
+  }
+}

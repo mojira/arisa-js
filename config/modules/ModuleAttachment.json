@@ -1,0 +1,19 @@
+{
+  "module": {
+    "name": "Attachment Check",
+    "description": "Check for illegal attachments",
+    "version": "0.1",
+    "priority": 1
+  },
+  "config": {
+
+    "run": {
+      "new": true,
+      "update": true
+    },
+
+    "messages": {
+      "closeReason": ""
+    }
+  }
+}

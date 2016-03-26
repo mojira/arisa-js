@@ -1,0 +1,18 @@
+{
+  "name": "arisajs",
+  "version": "1.0.0",
+  "description": "Jira bot, made for bugs.mojang.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mustek",
+  "license": "ISC",
+  "dependencies": {
+    "async": "latest",
+    "jira-connector": "latest",
+    "moment": "^2.12.0",
+    "request": "latest",
+    "log4js": "latest"
+  }
+}

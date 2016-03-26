@@ -1,0 +1,20 @@
+{
+  "jira": {
+    "host": "bugs.mojang.com",
+    "basic_auth": {
+      "username": "USERNAME",
+      "password": "PASSWORD"
+    }
+  },
+  "core": {
+    "startup_offset_sec": 300,
+    "check_interval_sec": 15,
+    "update_interval_sec": 3600,
+    "project_whitelist": [
+      "MC"
+    ]
+  },
+  "processor": {
+    "bot_signature": "\r\n\r\n{color:#bbb}-- I am a bot. This action was performed automagically. Testing some upgrades!{color}"
+  }
+}

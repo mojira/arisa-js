@@ -1,0 +1,64 @@
+{
+  "module": {
+    "name": "Crash parsers",
+    "description": "Parses and resolves crashes",
+    "version": "0.1",
+    "priority": 1
+  },
+  "config": {
+    "run": {
+      "new": true,
+      "update": true
+    },
+    "messages": {
+      "closeReasonDupe": "Duplicate of {DUPLICATE} -- If you have not, please use the [search function|https://bugs.mojang.com/issues/] in the future, to see if your bug has already been submitted.\r\nFor technical support, please use the [Mojang Support Center|http://help.mojang.com/customer/portal/articles/364794-where-can-i-find-more-help-and-technical-support-].",
+      "closeReasonMod": "This ticket is _invalid_ as it relates to a modified or third-party client, server, or launcher.\r\n* Any non-standard client/server/launcher build needs to be taken up with the appropriate team, not Mojang.\r\n* Any plugin issues need to be addressed to the creator of the plugin or resource pack.\r\n* This site is for addressing issues related to the *base unmodded Minecraft*; any modded system _invalidates_ your ticket, unless the behavior can be reproduced without mods.\r\n* Additionally, if you have problems on large-scale modded servers, please report it to their site. It's probably not a bug in Minecraft."
+    },
+    "crashinfo": {
+      "game": [
+        {
+          "head": "Pixel format not accelerated",
+          "resolveAs": "Duplicate",
+          "duplicates": "MC-297"
+        },
+        {
+          "head": "Could not create context",
+          "resolveAs": "Duplicate",
+          "duplicates": "MC-297"
+        },
+        {
+          "head": "failed to create a child event loop",
+          "resolveAs": "Duplicate",
+          "duplicates": "MC-34749"
+        },
+        {
+          "head": "Failed to check session lock, aborting",
+          "resolveAs": "Duplicate",
+          "duplicates": "MC-10167"
+        },
+        {
+          "head": "Maybe try a lowerresolution texturepack",
+          "resolveAs": "Duplicate",
+          "duplicates": "MC-29565"
+        },
+        {
+          "head": "java\\.lang\\.OutOfMemoryError\\: Java heap space",
+          "resolveAs": "Duplicate",
+          "duplicates": "MC-12949"
+        },
+        {
+          "head": "try a lowerresolution",
+          "resolveAs": "Duplicate",
+          "duplicates": "MC-29565"
+        }
+      ],
+      "java": [
+        {
+          "head": "ig[0-9]{1,2}icd[0-9]{2}\\.dll",
+          "resolveAs": "Duplicate",
+          "duplicates": "MC-32606"
+        }
+      ]
+    }
+  }
+}

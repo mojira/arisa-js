@@ -1,0 +1,18 @@
+{
+  "module": {
+    "name": "Piracy Check",
+    "description": "Check for signs of piracy",
+    "version": "0.1",
+    "priority": 10
+  },
+  "config": {
+
+    "run": {
+      "new": true,
+      "update": false
+    },
+    "messages": {
+      "closeReason": "You are currently using a *non-authorized* version of Minecraft. If you wish to purchase the full game, please visit the [Minecraft Store|https://minecraft.net/store].\r\nWe will not provide support for pirated versions of the game, these versions are modified and may contain malware."
+    }
+  }
+}
