@@ -52,7 +52,7 @@ module.exports = class ModuleCrash extends Module {
 
             // Add attachments
             async.forEachOf(issue.fields.attachment, (attachment, key, callback) => {
-                if (attachment.filename.match(/\.txt/) && cutoff.isBefore(attachment.created)) {
+                if (attachment.filename.match(/\.txt|\.log/) && cutoff.isBefore(attachment.created)) {
 
                     request(attachment.content, auth, (error, response, body) => {
 
