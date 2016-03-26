@@ -7,7 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mustek",
-  "license": "ISC",
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mojira/ArisaJS"
+  },
   "dependencies": {
     "async": "latest",
     "jira-connector": "latest",
