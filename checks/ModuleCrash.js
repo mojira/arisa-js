@@ -90,6 +90,8 @@ module.exports = class ModuleCrash extends Module {
                     created: null
                 };
 
+                if(issue.content === null) return callback();
+
                 crashInfo.created = issue.timestamp;
 
                 let resultGame = issue.content.match(CRASHGAME);
