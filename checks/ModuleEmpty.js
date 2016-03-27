@@ -50,7 +50,7 @@ module.exports = class ModuleEmpty extends Module {
                     signature.resolve.message = closeReasons.closeReasonIncomplete;
                     resolve(signature);
                 }
-            }
+            }else resolve(null);
         });
 
     }
