@@ -9,7 +9,7 @@
 
     "run": {
       "new": true,
-      "update": true
+      "update": false
     },
 
     "messages": {
