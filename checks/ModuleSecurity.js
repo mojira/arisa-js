@@ -20,14 +20,12 @@ module.exports = class ModuleSecurity extends Module {
         return new Promise(function (resolve, reject) {
             let fields = issue.fields;
 
-
-            if(fields.security === undefined && issue.project.security !== null){
+            if (fields.security === undefined && issue.project.security.length > 0) {
 
                 issue.addSecurityLevel(issue.project.security.public);
                 resolve(null);
 
-            }else resolve(null);
-
+            } else resolve(null);
 
 
         });
