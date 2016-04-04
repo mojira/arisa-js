@@ -69,8 +69,7 @@ function initializeConfig() {
 
 // Initializing the script
 function initialize() {
-
-
+    
     function handleProjects(data) {
         return new Promise((resolve, reject) => {
             if (data !== null || data !== undefined) return resolve(data);
@@ -80,24 +79,27 @@ function initialize() {
 
 
     project.initProjects({jira, config})
-        .then(handleProjects)
-        .then((data) => projects = data)
-        .then(() => processor = new Processor({projects, jira, config}))
+        .then(handleProjects)   // Initiate whitelisted projects
+        .then((data) => projects = data)    // Store projects locally
+        .then((projects) => project.renewSecurity({projects, jira}))    // Get project security levels if applicable
+        .then(() => processor = new Processor({projects, jira, config}))    // Intiate the processor
         .then(() => log.info('Processor created'))
-        .then(() => processor.loadModules())
+        .then(() => processor.loadModules())    // Load all modules
         .then(() => log.info('Modules loaded'))
-        .then(mainLoop)
-        .catch(msg => console.error('rejected: ' + msg));
+        .then(mainLoop) // Start issue checking
+        .catch(msg => console.error('rejected: ' + msg));   // Catch any errors
 }
 
 /*Program loop, switches between issueloop and version checking*/
 function mainLoop() {
 
     clearTimeout(issueTimer);
-    project.renewVersions(projects, jira).then(function () {
-        setTimeout(mainLoop, config.core.update_interval_sec * 1000);
-        issueLoop();
-    }).catch(error => console.error(error));
+    project.renewVersions(projects, jira)
+        // .then(() => project.renewSecurityLevels(projects, jira))
+        .then(function () {
+            setTimeout(mainLoop, config.core.update_interval_sec * 1000);
+            issueLoop();
+        }).catch(error => console.error(error));
 
 }
 
@@ -110,11 +112,11 @@ function issueLoop() {
 
 /*Fetch issues, populate a queue*/
 function queueIssues() {
-    let projects = config.core.project_whitelist.join(',');
+    let projectstring = config.core.project_whitelist.join(',');
 
     let opts = {
-        jql: `project in (${projects}) AND resolution in (Unresolved, "Awaiting Response") AND updated >= -5m`,
-        fields: ['resolution', 'description', 'labels', 'assignee', 'environment', 'attachment', 'versions', 'updated', 'created', 'resolutiondate', 'resolution', 'comment', 'reporter', 'customfield_10701', 'customfield_10500'],
+        jql: `project in (${projectstring}) AND resolution in (Unresolved, "Awaiting Response") AND updated >= -5m`,
+        fields: ['resolution', 'description', 'labels', 'assignee', 'environment', 'attachment', 'versions', 'updated', 'created', 'resolutiondate', 'resolution', 'comment', 'reporter', 'customfield_10701', 'customfield_10500', 'security'],
         expand: ['transitions'],
         startAt: 0,
         maxResults: 50
@@ -142,6 +144,7 @@ function queueIssues() {
                             id: issue.id,
                             fields: issue.fields,
                             transitions: issue.transitions,
+                            project: projects[issue.key.replace(/[^A-Z].*/, '')],
                             jira
                         }));
 
