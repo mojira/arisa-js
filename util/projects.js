@@ -33,6 +33,7 @@ exports.initProjects = function ({jira, config}) {
                 }
                 log.info(`Project processing complete. Found ${Object.keys(projects).length} projects.`);
                 log.info(`Whitelisted these projects: [${projectWhitelist}].`);
+
                 return resolve(projects);
             }
         });
@@ -47,9 +48,9 @@ exports.initProjects = function ({jira, config}) {
  */
 exports.renewVersions = function (projects, jira) {
 
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
 
-        async.forEachOfLimit(projects, 3, function (project, key, callback) {
+        async.forEachOfLimit(projects, 3, (project, key, callback) => {
 
 
             jira.project.getVersions({projectIdOrKey: key}, function (error, data) {
@@ -78,5 +79,37 @@ exports.renewVersions = function (projects, jira) {
                 resolve();
             }
         });
+    })
+};
+
+exports.renewSecurity = function ({projects, jira}) {
+    return new Promise((resolve, reject) => {
+
+        let projectArr = [];
+
+        for (let project in projects) {
+            projectArr.push(project)
+        }
+
+        jira.issue.getCreateMetadata({
+            projectKeys: projectArr.toString(),
+            expand: 'projects.issuetypes.fields'
+        }, (error, data) => {
+
+            for (let dataProject of data.projects) {
+
+                if (dataProject.issuetypes[0].fields.security) {
+                    for (let level of dataProject.issuetypes[0].fields.security.allowedValues) {
+
+                        if (level.name.match(/public/i)) projects[dataProject.key].security.public = level;
+                        else if (level.name.match(/private/i)) projects[dataProject.key].security.private = level;
+                    }
+                }
+            }
+
+            resolve();
+        });
+
+
     })
 };
