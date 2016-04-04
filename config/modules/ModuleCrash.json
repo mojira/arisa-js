@@ -8,7 +8,8 @@
   "config": {
     "run": {
       "new": true,
-      "update": false
+      "update": false,
+      "closed": false
     },
     "messages": {
       "closeReasonDupe": "Duplicate of {DUPLICATE} -- If you have not, please use the [search function|https://bugs.mojang.com/issues/] in the future, to see if your bug has already been submitted.\r\nFor technical support, please use the [Mojang Support Center|http://help.mojang.com/customer/portal/articles/364794-where-can-i-find-more-help-and-technical-support-].",
