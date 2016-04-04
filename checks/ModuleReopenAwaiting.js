@@ -29,10 +29,12 @@ module.exports = class ModuleReopenAwaiting extends Module {
                 if (fields.comment.total > 0) {
                     let lastComment = fields.comment.comments[fields.comment.total - 1];
                     let commentAuthor = lastComment.author.name;
-                    let commentDate = new Date(lastComment.created);
+                    let commentCreated = new Date(lastComment.created);
+                    let commentUpdated = new Date(lastComment.updated);
 
-                    if (updated - commentDate < 2000 && (commentAuthor == creator)) issue.reopen();
-                    else if (updated - commentDate > 2000) issue.reopen();
+                    if (updated - commentUpdated < 2000 && (commentUpdated - commentCreated) > 2000) return; // Comment update did the update > Ignore update
+                    else if (updated - commentCreated < 2000 && commentAuthor == creator) issue.reopen();
+                    else if (updated - commentCreated > 2000) issue.reopen();
                 }
             }
             resolve(null);
