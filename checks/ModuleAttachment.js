@@ -8,12 +8,12 @@ const INVALIDREGEX = new RegExp(INVALIDATTACHMENTS.join('|'), 'i');
 
 
 module.exports = class ModuleAttachment extends Module {
-    constructor({ config }) {
+    constructor({config}) {
         super({config});
 
     }
 
-    check({ issue }) {
+    check({issue}) {
         // Module does not report back but promise still needs to be resolved.
 
         let attachments = issue.fields.attachment;
@@ -25,13 +25,10 @@ module.exports = class ModuleAttachment extends Module {
                 for (let i = 0; i < attachments.length; i++) {
                     if (INVALIDREGEX.test(attachments[i].filename)) {
                         totalRemoved++;
-                        issue.deleteAttachment(attachments[i].id);
+                        issue.deleteAttachment(attachments[i]);
                     }
-
                 }
             }
-
-            if(totalRemoved > 0) log.trace(`[Attachments] ${issue.key} - Removed ${totalRemoved} attachments`);
             return resolve(null)
         });
 
