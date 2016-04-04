@@ -1,0 +1,20 @@
+{
+  "module": {
+    "name": "Fix Security",
+    "description": "Adds missing security levels",
+    "version": "0.1",
+    "priority": 0
+  },
+  "config": {
+
+    "run": {
+      "new": true,
+      "update": true,
+      "closed": true
+    },
+
+    "messages": {
+      "closeReason": ""
+    }
+  }
+}
