@@ -39,7 +39,7 @@ module.exports = class ModuleEmpty extends Module {
 
                 if (attachments.length > 0) return resolve(null); // It means we have data to work with.
 
-                else if (environment !== ENVDEFAULT && environment && environment.length > 10) {
+                else if (environment !== ENVDEFAULT && environment && environment.length > 20) {
                     log.trace(`[Empty] ${issue.key} - Incomplete issue with source launcher found.`);
                     return resolve(signature);
 
