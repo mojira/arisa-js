@@ -19,7 +19,6 @@ module.exports = class ModuleCHK extends Module {
         return new Promise(function (resolve, reject) {
 
             if (issue.fields[CONFIRMATIONFIELD] !== undefined && issue.fields[CONFIRMATIONFIELD].value != 'Unconfirmed' && issue.fields[CHKFIELD] == null) {
-                log.debug('Attempting to add CHK');
                 issue.updateCHK(moment().format('YYYY-MM-DD[T]HH:mm:ss.SSSZZ'));
                 resolve(null);
             }else resolve(null);

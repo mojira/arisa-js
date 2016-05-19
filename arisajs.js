@@ -105,7 +105,6 @@ function mainLoop() {
 
 /*Issue loop. Continually check for issues*/
 function issueLoop() {
-    log.info("Checking for new issues");
     queueIssues();
 }
 
@@ -130,7 +129,6 @@ function queueIssues() {
             issueTimer = setTimeout(issueLoop, config.core.check_interval_sec * 1000);
         } else {
             if (data.total === 0) {
-                log.info('No new or updated issues found.');
                 issueTimer = setTimeout(issueLoop, config.core.check_interval_sec * 1000);
             } else {
                 log.trace(`Found ${data.total} issue(s)`);

@@ -65,7 +65,7 @@ exports.renewVersions = function (projects, jira) {
                     }
 
                     projects[project.key].latestVersion = latest;
-                    log.trace('renewed ' + project)
+                    log.trace(`Renewed ${project.key} - ${(latest.name !== undefined)? latest.name : 'N/A'}`);
                 }
 
                 callback();

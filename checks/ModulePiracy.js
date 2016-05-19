@@ -28,9 +28,10 @@ module.exports = class ModulePiracy extends Module {
         return new Promise(function (resolve, reject) {
 
             let environment = issue.fields.environment;
+            let match = PIRACYREGEX.exec(environment);
 
-            if (PIRACYREGEX.test(environment)) {
-                log.trace(`[Piracy] ${issue.key} - Pirated launcher found.`);
+            if (match) {
+                log.trace(`[Piracy] ${issue.key} - Pirated launcher found: ${match[0]}`);
                 resolve(signature);
             } else {
                 resolve(null);
