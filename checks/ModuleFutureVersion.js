@@ -21,7 +21,7 @@ module.exports = class ModuleFutureVersion extends Module {
 
                 if (affected.length > 0) {
                     for (var i = 0; i < affected.length; i++) {
-                        if (!affected[i].released && latest.id != 0) {
+                        if (!affected[i].released && !affected[i].archived && latest.id != 0) {
                             doComment = true;
                             issue.replaceAffected(affected[i].name, latest.name);
                         }
