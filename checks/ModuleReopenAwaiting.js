@@ -34,7 +34,17 @@ module.exports = class ModuleReopenAwaiting extends Module {
 
                     if (updated - commentUpdated < 2000 && (commentUpdated - commentCreated) > 2000) return; // Comment update did the update > Ignore update
                     else if (updated - commentCreated < 2000 && commentAuthor == creator) issue.reopen();
-                    else if (updated - commentCreated > 2000) issue.reopen();
+                    else if (updated - commentCreated > 2000){
+                        let updateByCommentUpdate = false;
+
+                        for (comment of fields.comment.comments){
+                            let commentUpdated2 = new Date(comment.updated);
+                            if(updated - commentUpdated2 < 2000) updateByCommentUpdate = true;
+                        }
+
+                        if(!updateByCommentUpdate) issue.reopen();
+
+                    }
                 }
             }
             resolve(null);
