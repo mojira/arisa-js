@@ -1,15 +1,15 @@
 "use strict";
 
-var Issue = require('./lib/issue.class.js');  // Issue class
-var Project = require('./lib/project.class.js');  // Project class
-var Check = require('./lib/module.class.js');  // Check class
+const Issue = require('./lib/issue.class.js');  // Issue class
+const Project = require('./lib/project.class.js');  // Project class
+const Check = require('./lib/module.class.js');  // Check class
 let Processor = require('./lib/processor.class.js');
 let moment = require('moment');
 
-var log = require('./util/logger.js');
-var JiraApi = require('jira-connector');
-var async = require('async');
-var fs = require('fs');
+const log = require('./util/logger.js');
+const JiraApi = require('jira-connector');
+const async = require('async');
+const fs = require('fs');
 
 
 /** Import libraries **/
@@ -19,11 +19,8 @@ let modules = require('./util/modules.js');
 let config = null;
 let jira = null;
 
-var projects = {};
-var tester = require('./checks/ModuleEmpty.js');
-
+let projects = {};
 let processor;
-
 let mainTimer;
 let issueTimer;
 let parsedIssueDate;
@@ -40,7 +37,29 @@ function initializeConfig() {
 
                 // Check jira authentication configuration. Actual login is done at a later stage.
                 if (!config.jira || !config.jira.host) reject(`'jira' block missing or lacking host.`);
-                if (!config.jira.basic_auth || !config.jira.basic_auth.username || !config.jira.basic_auth.password) reject(`'jira' block lacking auth info.`);
+
+                // Check auth
+                if (!config.jira.basic_auth && !config.jira.oauth) reject(`'jira' block lacking basic_auth or oauth info.`);
+                if (config.jira.basic_auth && (!config.jira.basic_auth.username || !config.jira.basic_auth.password)) reject(`'basic_auth' detected but lacking username and or password`);
+                if (config.jira.oauth && !config.jira.oauth.consumer_key) reject(`'oauth' block lacking consumer_key.`);
+
+                // If both auth options are present, prefer oauth and give the user a message.
+                if (config.jira.basic_auth && config.jira.oauth) {
+                    console.log('Detected both basic_auth and oath. Using oauth.');
+                    console.log('To use basic_auth, remove the oauth block in arisa.json.');
+                    delete config.jira.basic_auth;
+                }
+
+                // Attempt to load the private key.
+                if(config.jira.oauth){
+                    try{
+                        config.jira.oauth.private_key = fs.readFileSync('./config/keys/jira.pem', 'utf-8');
+                    }catch(error){
+                        console.error('FATAL: Private key missing. Location: config/jira.pem');
+                        process.abort('');
+                    }
+                }
+
 
                 // Check core-specific settings
                 if (!config.core) reject(`'core' block missing`);
@@ -54,11 +73,50 @@ function initializeConfig() {
                 if (!config.processor) reject(`'processor' block missing`);
                 if (!config.processor.bot_signature) reject(`'bot_signature' value missing`);
 
-                // Set defaults
-                jira = new JiraApi(config.jira);
-                parsedIssueDate = moment().subtract(config.core.startup_offset_sec, 'seconds');
+                if (config.jira.oauth.token == '') {
 
-                resolve();
+                    JiraApi.oauth_util.getAuthorizeURL(config.jira, (error, oauth) => {
+                        if(error) reject(error);
+                        else{
+                            console.log('== STEP 1 - Your oauth procedure starts here ==');
+                            console.log('You will receive a URL, a token and a token secret.');
+                            console.log('Go to the URL whilst authenticated to the BOT account and approve the request');
+                            console.log('Add the verifier token from this page to the arisa.json file');
+                            console.log('Now add the token and token secret to the arisa.json file.');
+                            console.log('When done, rerun this script.');
+                            console.log('');
+                            console.log('If this is too complex, please use basic_auth instead');
+                            console.log(oauth);
+                            reject('Follow instruction, then rerun');
+                        }
+
+                    });
+
+                    reject('Follow the instructions to obtain your Jira authentication token.');
+
+                } else if (config.jira.oauth.oauth_verifier) {
+
+                    JiraApi.oauth_util.swapRequestTokenWithAccessToken(config.jira, (error, token) => {
+                        if(error) reject(error);
+                        else{
+                            console.log('== STEP 2 - Get Jira access token');
+                            console.log('If done correctly, you will receive a new token below.');
+                            console.log('* Remove the oauth_verifier token from the config file.');
+                            console.log('* Replace the token line with the new token found below.');
+                            console.log('You should be left with a consumer_key, token and token_secret');
+                            console.log(token);
+
+                            reject("Rerun the bot once more. You should be done");
+                        }
+                    });
+
+                } else {
+                    // Set defaults
+                    jira = new JiraApi(config.jira);
+                    parsedIssueDate = moment().subtract(config.core.startup_offset_sec, 'seconds');
+
+                    resolve();
+                }
 
             }
         })
@@ -69,7 +127,7 @@ function initializeConfig() {
 
 // Initializing the script
 function initialize() {
-    
+
     function handleProjects(data) {
         return new Promise((resolve, reject) => {
             if (data !== null || data !== undefined) return resolve(data);
@@ -95,7 +153,7 @@ function mainLoop() {
 
     clearTimeout(issueTimer);
     project.renewVersions(projects, jira)
-        // .then(() => project.renewSecurityLevels(projects, jira))
+    // .then(() => project.renewSecurityLevels(projects, jira))
         .then(function () {
             setTimeout(mainLoop, config.core.update_interval_sec * 1000);
             issueLoop();

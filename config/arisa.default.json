@@ -4,6 +4,12 @@
     "basic_auth": {
       "username": "USERNAME",
       "password": "PASSWORD"
+    },
+    "oauth": {
+      "consumer_key": "JIRA_OAUTH_CONSUMER_KEY_HERE",
+      "token": "",
+      "token_secret": "",
+      "oauth_verifier": ""
     }
   },
   "core": {
