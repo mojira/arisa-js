@@ -37,7 +37,7 @@ module.exports = class ModuleReopenAwaiting extends Module {
                     else if (updated - commentCreated > 2000){
                         let updateByCommentUpdate = false;
 
-                        for (comment of fields.comment.comments){
+                        for (let comment of fields.comment.comments){
                             let commentUpdated2 = new Date(comment.updated);
                             if(updated - commentUpdated2 < 2000) updateByCommentUpdate = true;
                         }
