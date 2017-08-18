@@ -42,7 +42,7 @@ module.exports = class ModuleReopenAwaiting extends Module {
                             if(updated - commentUpdated2 < 2000) updateByCommentUpdate = true;
                         }
 
-                        if(!updateByCommentUpdate) issue.reopen();
+                        if(!updateByCommentUpdate && commentAuthor == creator) issue.reopen();
 
                     }
                 }
