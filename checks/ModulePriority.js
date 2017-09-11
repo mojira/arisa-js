@@ -13,7 +13,7 @@ module.exports = class ModulePriority extends Module {
             let priority = issue.fields.priority.name;
 
             if(priority == null && issue.key == "WEB") {
-                issue.setPriority();
+                issue.setPriority("Minor");
             }
             
             resolve(null);
