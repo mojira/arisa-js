@@ -1,6 +1,7 @@
 "use strict";
 
 var Module = require('../lib/module.class.js');
+var log = require('../util/logger');
 
 module.exports = class ModulePriority extends Module {
     constructor({config}) {
