@@ -173,7 +173,7 @@ function queueIssues() {
 
     let opts = {
         jql: `project in (${projectstring}) AND resolution in (Unresolved, "Awaiting Response") AND updated >= -5m`,
-        fields: ['resolution', 'description', 'labels', 'assignee', 'environment', 'attachment', 'versions', 'updated', 'created', 'resolutiondate', 'resolution', 'comment', 'reporter', 'customfield_10701', 'customfield_10500', 'security'],
+        fields: ['resolution', 'description', 'labels', 'assignee', 'environment', 'attachment', 'versions', 'updated', 'created', 'resolutiondate', 'resolution', 'comment', 'reporter', 'customfield_10701', 'customfield_10500', 'security', 'priority'],
         expand: ['transitions'],
         startAt: 0,
         maxResults: 50
