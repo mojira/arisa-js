@@ -7,7 +7,9 @@ const PIRACYSIGNATURES = ['Minecraft Launcher null', 'Bootstrap 0', 'Launcher: 1
     'Launcher 2.0', 'Launcher 3.0.0', 'Launcher: 3.1.0', 'Launcher: 3.1.1', 'Launcher: 3.1.4', '1.0.8', 'uuid sessionId',
     'auth_access_token', 'windows-${arch}', 'keicraft', 'keinett', 'nodus', 'iridium', 'mcdonalds', 'uranium', 'nova',
     'divinity', 'gemini', 'mineshafter', 'Team-NeO', 'DarkLBP'];
+const PIRACYSIGNATURES_descsum = ['mcleaks', 'mcmarket'];
 const PIRACYREGEX = new RegExp(PIRACYSIGNATURES.join('|'), 'i');
+const PIRACYREGEX_descsum = new RegExp(PIRACYSIGNATURES_descsum.join('|'), 'i');
 
 module.exports = class ModulePiracy extends Module {
     constructor({config}) {
@@ -28,7 +30,9 @@ module.exports = class ModulePiracy extends Module {
         return new Promise(function (resolve, reject) {
 
             let environment = issue.fields.environment;
-            let match = PIRACYREGEX.exec(environment);
+            let summary = issue.fields.summary;
+            let description = issue.fields.description;
+            let match = PIRACYREGEX.exec(environment) || PIRACYREGEX_descsum.exec(summary) || PIRACYREGEX_descsum.exec(description) || PIRACYREGEX_descsum.exec(environment);
 
             if (match) {
                 log.trace(`[Piracy] ${issue.key} - Pirated launcher found: ${match[0]}`);
