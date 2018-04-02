@@ -4,9 +4,9 @@ var Module = require('../lib/module.class.js');
 var log = require('../util/logger');
 
 const PIRACYSIGNATURES = ['Minecraft Launcher null', 'Bootstrap 0', 'Launcher: 1.0.10  (bootstrap 4)', 'Launcher: 1.0.10  (bootstrap 5)',
-    'Launcher 2.0', 'Launcher 3.0.0', 'Launcher: 3.1.0', 'Launcher: 3.1.1', 'Launcher: 3.1.4', '1.0.8', 'uuid sessionId',
+    'Launcher 3.0.0', 'Launcher: 3.1.0', 'Launcher: 3.1.1', 'Launcher: 3.1.4', '1.0.8', 'uuid sessionId',
     'auth_access_token', 'windows-${arch}', 'keicraft', 'keinett', 'nodus', 'iridium', 'mcdonalds', 'uranium', 'nova',
-    'divinity', 'gemini', 'mineshafter', 'Team-NeO', 'DarkLBP'];
+    'divinity', 'gemini', 'mineshafter', 'Team-NeO', 'DarkLBP', 'Launcher X'];
 const PIRACYSIGNATURES_descsum = ['mcleaks', 'mcmarket'];
 const PIRACYREGEX = new RegExp(PIRACYSIGNATURES.join('|'), 'i');
 const PIRACYREGEX_descsum = new RegExp(PIRACYSIGNATURES_descsum.join('|'), 'i');

@@ -14,8 +14,8 @@
     },
 
     "messages": {
-      "closeReasonIncomplete": "We are unable to diagnose your issue due to the lack of proper debug information. Please review the [guidelines|http://help.mojang.com/customer/portal/articles/801354-writing-helpful-bug-reports-for-minecraft] before reporting issues.\r\nIn case of a game crash, please also attach the crash log from {{[minecraft/crash-reports/crash-<DATE>-client.txt|http://hopper.minecraft.net/help/finding-minecraft-data-folder]}}.",
-      "closeReasonAwaiting": "Please attach the crash report ({{[minecraft|http://hopper.minecraft.net/help/finding-minecraft-data-folder]/crash-reports/crash-<DATE>-client.txt}}), otherwise we can not diagnose this issue.\r\nFor technical support please use the [Mojang Support Center|http://help.mojang.com/customer/portal/articles/364794-where-can-i-find-more-help-and-technical-support-]."
+      "closeReasonIncomplete": "We are unable to diagnose your issue due to the lack of proper debug information. Please review the [guidelines|http://help.mojang.com/customer/portal/articles/801354-writing-helpful-bug-reports-for-minecraft] before reporting issues.\r\nIn case of a game crash, please also attach the crash log from {{[minecraft/crash-reports/crash-<DATE>-client.txt|http://hopper.minecraft.net/help/guides/finding-minecraft-data-folder/]}}.",
+      "closeReasonAwaiting": "Please attach the crash report ({{[minecraft|http://hopper.minecraft.net/help/guides/finding-minecraft-data-folder/]/crash-reports/crash-<DATE>-client.txt}}), otherwise we can not diagnose this issue.\r\nFor technical support please use the [Mojang Support Center|http://help.mojang.com/customer/portal/articles/364794-where-can-i-find-more-help-and-technical-support-]."
     }
   }
 }
