@@ -40,7 +40,7 @@ module.exports = class ModuleCrash extends Module {
 
     fetchIssues(issue) {
         let arrIssues = [];
-        let auth = {auth: {user: this.mainconfig.jira.basic_auth.username, pass: this.mainconfig.jira.basic_auth.password}};
+        let auth = {auth: {user: this.config.auth.username, pass: this.config.auth.password}};
         let cutoff = moment().subtract(30, 'day');
 
         return new Promise((resolve, reject) => {
