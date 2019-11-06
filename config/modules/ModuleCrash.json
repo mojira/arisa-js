@@ -33,6 +33,11 @@
           "duplicates": "MC-297"
         },
         {
+          "head": "WGL: The driver does not appear to support OpenGL",
+          "resolveAs": "Duplicate",
+          "duplicates": "MC-297"
+        },
+        {
           "head": "failed to create a child event loop",
           "resolveAs": "Duplicate",
           "duplicates": "MC-34749"
