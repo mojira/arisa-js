@@ -3,7 +3,7 @@
 var Module = require('../lib/module.class.js');
 var log = require('../util/logger');
 
-const INVALIDATTACHMENTS = ['\\.jar', '\\.exe', '\\.com', '\\.bat', '\\.msi', '\\.run', '\\.com', '\\.lnk', '\\.dmg', 'MST\\.rar', 'MST\\.zip'];
+const INVALIDATTACHMENTS = ['\\.jar$', '\\.exe$', '\\.com$', '\\.bat$', '\\.msi$', '\\.run$', '\\.com$', '\\.lnk$', '\\.dmg$', '^MST\\.rar$', '^MST\\.zip$'];
 const INVALIDREGEX = new RegExp(INVALIDATTACHMENTS.join('|'), 'i');
 
 
