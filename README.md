@@ -8,7 +8,7 @@
 <!-- PROJECT LOGO -->
 <br/>
 <p align="center">
-  <a href="http://htlanichstrasse.tirol">
+  <a href="https://bugs.mojang.com/">
     <img src="images/arisa.png" alt="Arisa" width="80" height="80">
   </a>
 
