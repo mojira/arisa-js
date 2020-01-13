@@ -1,16 +1,12 @@
 {
-  "appenders": [
-    {
+  "appenders": {
+    "all": {
       "category": "application",
       "type": "console",
-      "layout": {
-        "type": "pattern",
-        "pattern": "%[%r %-5p% | %]%m"
-      }
+      "pattern": "%[%r %-5p% | %]%m"
     }
-  ],
-
-  "levels": {
-    "[all]": "trace"
+  },
+  "categories": {
+    "default": { "appenders": ["all"], "level": "TRACE" }
   }
 }
