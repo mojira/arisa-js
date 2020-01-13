@@ -26,7 +26,7 @@
 </p>
 
 ## About the project
-Arisa was [originally written in Ruby](https://github.com/mojira/arisa) by Synchunk, a retired Mojira moderator. Later, she was re-written using [ECMAScript 6](http://es6-features.org/) for use with [Node.js](https://nodejs.org/) by [Mustek](https://github.com/Mustek). Her purpose is to filter newly created issues on the Mojira bug tracker and help keeping the moderator's and helper's workflow on the tracker nice & smooth.
+Arisa was [originally written in Ruby](https://github.com/mojira/arisa) by Synchunk, a retired Mojira moderator. Later, she was re-written using [ECMAScript 6](http://es6-features.org/) for use with [Node.js](https://nodejs.org/) by [Mustek](https://github.com/Mustek). Her purpose is to filter newly created issues on the Mojira bug tracker and help keeping the moderators and helper's workflow on the tracker nice & smooth.
 
 ## Installation
 
