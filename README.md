@@ -5,6 +5,9 @@
 
 # Arisa
 
+# **DEPRECATED** - no longer actively maintained. All new development is done in github.com/mojira/arisa-kt
+---
+
 <!-- PROJECT LOGO -->
 <br/>
 <p align="center">
